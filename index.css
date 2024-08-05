@@ -1,4 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
+    position: relative;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -7,6 +14,10 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
+}
+
+h1 {
+    margin-bottom: 20px;
 }
 
 div {
@@ -54,4 +65,12 @@ button:hover {
     color: #007bff;
     font-weight: bold;
     text-align: center;
+}
+
+#logoutButton {
+    position: absolute;
+    margin-top: 10px;
+    width: 100px;
+    top: 0;
+    right: 0;
 }

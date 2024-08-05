@@ -1,5 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const baseURL = 'https://api-zing-mp3.onrender.com'
     const loginURL = `${baseURL}/api/account/login`
     const uploadURL = `${baseURL}/api/music/create`
