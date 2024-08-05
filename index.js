@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const uploadForm = document.getElementById('uploadForm');
     const uploadStatus = document.getElementById('uploadStatus');
+    const sendBtn = document.getElementById('send-btn');
 
     // Kiểm tra token trong localStorage
     const token = localStorage.getItem('token');
@@ -54,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
+        // ẩn nút khi gửi lên
+        sendBtn.disabled = true
+
         const formData = new FormData();
         formData.append('src_music', document.getElementById('src_music').files[0]);
         formData.append('image_music', document.getElementById('image_music').files[0]);
@@ -83,10 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Authorization': `Bearer ${token}`
                 },
                 body: formData
-            });
+            }).then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json(); // Chuyển đổi phản hồi thành JSON
+              })
+              .then(data => {
+                console.log(data); // Xử lý dữ liệu JSON
+              })
+
+            // Vô hiệu hóa nút
+            // document.getElementById('myButton').disabled = true;
 
             // Ẩn trạng thái tải lên sau khi hoàn thành
             uploadStatus.style.display = 'none';
+
+            // Kích hoạt lại nút submit
+            sendBtn.disabled = false;
 
             if (response.ok) {
                 alert('Tải lên thành công!');
