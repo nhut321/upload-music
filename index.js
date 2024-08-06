@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
               })
               .then(data => {
                 console.log(data); // Xử lý dữ liệu JSON
+                return data
               })
 
             // Vô hiệu hóa nút
